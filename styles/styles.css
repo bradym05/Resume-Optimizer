@@ -161,12 +161,18 @@ header, footer {
 /* Form size */
 .upload-files {
     width: 100%;
-    padding-top: 50px;
 }
 
 /* Input sections */
 .upload-files form label {
-    margin-bottom: 10px;
+    margin-top: 25px;
+}
+
+.upload-files form textarea {
+    width: 30%;;
+    height: 200px;
+    margin-bottom: 25px;
+    resize: none;
 }
 
 #file-submit{

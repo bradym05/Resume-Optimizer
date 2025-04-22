@@ -48,8 +48,13 @@ Version:
                 <section class="upload-files">
                     <!-- Form for file inputs -->
                     <form method="post" enctype="multipart/form-data" class="flex">
+                        <!-- Resume File Upload-->
                         <input type="file" id="resume-file">
                         <label for="resume-file" class="custom-input">Upload Resume (.docx)</label>
+                        <!-- Job Description Text Input -->
+                        <label for="job-description">Paste job description here (Maximum 2000 characters)</label>
+                        <textarea maxlength="2000" id="job-description"></textarea>
+                        <!-- Submit Button -->
                         <button type="button" id="file-submit">Submit</button>
                     </form>
                 </section>
