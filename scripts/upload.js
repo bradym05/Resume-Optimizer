@@ -20,9 +20,6 @@ function onSubmit() {
     fetch(fileUploadURL, {
         method: 'POST',
         mode: 'cors',
-        headers: {
-          'Origin': 'https://bradym05.github.io/Resume-Optimizer/'
-        },
         body: formData
     }).then(data => {
         console.log('Success:', data)
