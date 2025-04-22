@@ -19,7 +19,6 @@ function onSubmit() {
     formData.append('file', resume);
     fetch(fileUploadURL, {
         method: 'POST',
-        mode: 'cors',
         body: formData
     }).then(data => {
         console.log('Success:', data)
