@@ -19,6 +19,10 @@ function onSubmit() {
     formData.append('file', resume);
     fetch(fileUploadURL, {
         method: 'POST',
+        mode: 'cors',
+        headers: {
+            'Content-Type': 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+        },
         body: formData
     }).then(data => {
         console.log('Success:', data)
