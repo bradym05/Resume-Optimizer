@@ -165,11 +165,11 @@ header, footer {
 }
 
 /* Input sections */
-.upload-files form div {
+.upload-files form label {
     margin-bottom: 10px;
 }
 
-#file-submit, .upload-files form div {
+#file-submit{
     height: 40px;
     color: white;
 }

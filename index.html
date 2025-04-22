@@ -48,11 +48,9 @@ Version:
                 <section class="upload-files">
                     <!-- Form for file inputs -->
                     <form method="post" enctype="multipart/form-data" class="flex">
-                        <div>
-                            <input type="file" id="resume-file">
-                            <label for="resume-file" class="custom-input">Upload Resume (.docx, .pdf)</label>
-                        </div>
-                        <button type="submit" id="file-submit">Submit</button>
+                        <input type="file" id="resume-file">
+                        <label for="resume-file" class="custom-input">Upload Resume (.docx, .pdf)</label>
+                        <button type="button" id="file-submit">Submit</button>
                     </form>
                 </section>
             </div>
@@ -69,6 +67,9 @@ Version:
             </p>
             <p class="small-text">Created by <a href="https://www.linkedin.com/in/brady-maki/">Brady Maki</a></p>
         </footer>
+
+        <script src="./scripts/upload.js"></script>
+
     </body>
 
 </html>
