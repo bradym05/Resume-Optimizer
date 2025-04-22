@@ -45,14 +45,14 @@ Version:
                 </section>
 
                 <!-- Upload section to obtain necessary files -->
-                <section class="file-inputs">
+                <section class="upload-files">
                     <!-- Form for file inputs -->
                     <form method="post" enctype="multipart/form-data" class="flex">
                         <div>
-                            <input type="file" name="resume">
-                            <label for="resume">Resume (.docx, .pdf)</label>
+                            <input type="file" id="resume-file">
+                            <label for="resume-file" class="custom-input">Upload Resume (.docx, .pdf)</label>
                         </div>
-                        <button type="submit">Upload</button>
+                        <button type="submit" id="file-submit">Submit</button>
                     </form>
                 </section>
             </div>

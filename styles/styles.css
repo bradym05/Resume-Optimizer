@@ -31,7 +31,7 @@ main {
     display: flex;
 }
 
-footer, body, .index div {
+footer, body, .index div, .upload-files form {
     flex-direction: column;
 }
 
@@ -59,7 +59,7 @@ a:hover {
 }
 
 /* White color */
-header a, a:hover, p {
+body, header a, a:hover, p {
     color: #ffffff; 
 }
 
@@ -68,7 +68,7 @@ footer a, footer p {
     color: #888888;
 }
 
-header, footer, .index div {
+header, footer, .index div, .upload-files form {
     align-items: center;
 }
 
@@ -136,6 +136,40 @@ header, footer {
 
 /************ Button Styling *************/
 
+/* Hide default buttons */
+.upload-files input {
+    display: none;
+}
 
-/********** File Inputs Styling **********/
+#file-submit, .custom-input {
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 2px;
+    font-weight: 600;
+    border-color: #212121;
+    background-color: #276a42;
+}
 
+.custom-input:hover, #file-submit:hover {
+    background-color: #00b347;
+}
+
+/********* File Uploads Styling **********/
+
+/* Form size */
+.upload-files {
+    width: 100%;
+    padding-top: 50px;
+}
+
+/* Input sections */
+.upload-files form div {
+    margin-bottom: 10px;
+}
+
+#file-submit, .upload-files form div {
+    height: 40px;
+    color: white;
+}
