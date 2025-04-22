@@ -1,0 +1,141 @@
+/************* Color Pallete *************
+
+- green: #008635
+- dark grey (primary background): #212121
+- medium grey (secondary background): #414141
+- white (primary text): #ffffff
+- subtle grey: #888888
+
+/*****************************************/
+
+/************* Site Defaults *************/
+
+body {
+    margin: 0 auto;
+    min-height: 100vh;
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.5;
+    background-color: #414141;
+    font-weight: 400;
+}
+
+main {
+    flex-grow: 1;
+}
+
+.flex {
+    justify-content: space-evenly;
+}
+
+.flex, body {
+    display: flex;
+}
+
+footer, body, .index div {
+    flex-direction: column;
+}
+
+/********* Site-Wide Text Styling ********/
+
+/* First level headings bold */
+h1 {
+    font-weight: 500;
+}
+
+/* Default link properties */
+a {
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+/* Text Size Classes */
+.large-text {
+    font-size: 48px;
+}
+.small-text {
+    font-size: 12px;
+}
+
+/* White color */
+header a, a:hover, p {
+    color: #ffffff; 
+}
+
+/* Subtle Grey Color */
+footer a, footer p {
+    color: #888888;
+}
+
+header, footer, .index div {
+    align-items: center;
+}
+
+/********* Header/Footer Styling *********/
+
+/* Header Styling */
+header {
+    height: 120px;
+    margin-bottom: 20px;
+}
+
+/* Header links */
+header a:hover {
+    text-decoration: none;
+}
+
+header .flex {
+    flex-grow: 1;
+}
+
+/* Header Title */
+header .flex h1 {
+    justify-self: center;
+    text-align: center;
+    flex-grow: 1;
+}
+
+/* Footer Styling */
+footer {
+    height: 60px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-top: 20px;
+}
+
+/* Combined Styling (bg color) */
+header, footer {
+    background-color: #212121;    
+}
+
+/************* Icon Styling **************/
+
+#header-icons {
+    position: relative;
+}
+
+#resume-icon {
+    height: 100%;
+    position: relative;
+}
+
+#wand-icon {
+    height: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50px;
+}
+
+/************ Home Page Styling **********/
+
+.index div section {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+/************ Button Styling *************/
+
+
+/********** File Inputs Styling **********/
+

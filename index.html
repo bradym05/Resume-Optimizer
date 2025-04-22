@@ -1,0 +1,74 @@
+<!--
+
+Description: 
+Author: @bradym05
+Version: 
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <!-- Page Setup -->
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Resume Optimizer</title>
+        <!-- Style Sheets -->
+        <link rel="stylesheet" href="styles/reset.css">
+        <link rel="stylesheet" href="styles/styles.css">
+        <!-- Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;600&display=swap" rel="stylesheet">
+    </head>
+
+    <body>
+        <!-- Site header with icons and title -->
+        <header class="flex">
+            <a href="index.html" class="flex">
+                <!-- Resume and wand SVGs -->
+                <div id="header-icons">
+                    <img id="resume-icon" src="images/Resume.svg" alt="a simple resume with the outline of a portrait in the corner">
+                    <img id="wand-icon" src="images/Wand.svg" alt="a magic wand with sparkles at the tip">
+                </div>
+                <h1 class="large-text">Resume Optimizer</h1>
+            </a>
+        </header>
+
+        <!-- Index main -->
+        <main class="index">
+            <div class="flex">
+                <!-- Brief website description -->
+                <section class="about">
+                    <p>Upload your resume, and job posting to make adjustments that will boost your ATS score.</p>
+                </section>
+
+                <!-- Upload section to obtain necessary files -->
+                <section class="file-inputs">
+                    <!-- Form for file inputs -->
+                    <form method="post" enctype="multipart/form-data" class="flex">
+                        <div>
+                            <input type="file" name="resume">
+                            <label for="resume">Resume (.docx, .pdf)</label>
+                        </div>
+                        <button type="submit">Upload</button>
+                    </form>
+                </section>
+            </div>
+        </main>
+
+        <!-- Site footer with attributions -->
+        <footer class="flex">
+            <p> 
+                <a href="https://www.reshot.com/free-svg-icons/item/magic-wand-4JZTFRKXUV/" title="wand icon">Wand Icon </a>
+                and 
+                <a href="https://www.reshot.com/free-svg-icons/item/profile-KZ62Q3P9FW/" title="resume icon">Resume Icon </a>
+                Created by
+                <a href="https://www.reshot.com/" title="reshot">Reshot </a>
+            </p>
+            <p class="small-text">Created by <a href="https://www.linkedin.com/in/brady-maki/">Brady Maki</a></p>
+        </footer>
+    </body>
+
+</html>
