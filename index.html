@@ -39,38 +39,57 @@ Version:
         <!-- Index main -->
         <main class="index">
             <div class="flex">
+                <!-- Upload section to obtain necessary files -->
+                <section class="upload-files">
+                    <h2>Resume Scanner</h1>
+                    <!-- Description-->
+                    <div class="section-description">
+                        <p>
+                            Optimize your resume to improve your ATS Score for free!
+                        </p>
+                        <br>
+                        <ol>
+                            <li>Resume and job description are uploaded to the server</li>
+                            <li>Machine Learning AI extracts and compares keywords</li>
+                        </ol>
+                    </div>
+                    <!-- Form for file inputs -->
+                    <form class="flex">
+                        <!-- Resume File Upload-->
+                        <input type="file" id="resume-file">
+                        <label for="resume-file" class="custom-input">
+                            Upload Resume (.docx, 2mb max)
+                            <p class="small-text", id="file-hint">No file uploaded</p>
+                        </label>
+                        <!-- Job Description Text Input -->
+                        <textarea id="job-description"></textarea>
+                        <label for="job-description" id="character-count">0</label>
+                        <!-- Submit Button -->
+                        <button type="button" id="file-submit"></button>
+                        <label for="file-submit" class="custom-input">
+                            Optimize Now
+                            <p class="small-text">Your files will be uploaded for processing</p>
+                        </label>
+                    </form>
+                </section>
+                
                 <!-- Brief website description -->
                 <section class="about">
                     <p>Upload your resume, and job posting to make adjustments that will boost your ATS score.</p>
-                </section>
-
-                <!-- Upload section to obtain necessary files -->
-                <section class="upload-files">
-                    <!-- Form for file inputs -->
-                    <form method="post" enctype="multipart/form-data" class="flex">
-                        <!-- Resume File Upload-->
-                        <input type="file" id="resume-file">
-                        <label for="resume-file" class="custom-input">Upload Resume (.docx)</label>
-                        <!-- Job Description Text Input -->
-                        <label for="job-description">Paste job description here (Maximum 2000 characters)</label>
-                        <textarea maxlength="2000" id="job-description"></textarea>
-                        <!-- Submit Button -->
-                        <button type="button" id="file-submit">Submit</button>
-                    </form>
                 </section>
             </div>
         </main>
 
         <!-- Site footer with attributions -->
         <footer class="flex">
-            <p> 
+            <p class="small-text">Created by <a href="https://www.linkedin.com/in/brady-maki/">Brady Maki</a></p>
+            <p class="small-text"> 
                 <a href="https://www.reshot.com/free-svg-icons/item/magic-wand-4JZTFRKXUV/" title="wand icon">Wand Icon </a>
                 and 
                 <a href="https://www.reshot.com/free-svg-icons/item/profile-KZ62Q3P9FW/" title="resume icon">Resume Icon </a>
                 Created by
                 <a href="https://www.reshot.com/" title="reshot">Reshot </a>
             </p>
-            <p class="small-text">Created by <a href="https://www.linkedin.com/in/brady-maki/">Brady Maki</a></p>
         </footer>
 
         <script src="./scripts/upload.js"></script>

@@ -31,7 +31,7 @@ main {
     display: flex;
 }
 
-footer, body, .index div, .upload-files form {
+footer, body, .upload-files form {
     flex-direction: column;
 }
 
@@ -52,7 +52,8 @@ a:hover {
 
 /* Text Size Classes */
 .large-text {
-    font-size: 48px;
+    text-transform: uppercase;
+    font-size: 28px;
 }
 .small-text {
     font-size: 12px;
@@ -64,19 +65,31 @@ body, header a, a:hover, p {
 }
 
 /* Subtle Grey Color */
-footer a, footer p {
+footer a, footer p, .small-text {
     color: #888888;
 }
 
-header, footer, .index div, .upload-files form {
+header, footer, .upload-files form {
     align-items: center;
+}
+
+/* Base h2 */
+h2 {
+    font-size: 20px;
+    text-transform: uppercase;
+    font-weight: 10;
+}
+
+ol {
+    list-style-type:decimal;
+    padding-left: 4vh;
 }
 
 /********* Header/Footer Styling *********/
 
 /* Header Styling */
 header {
-    height: 120px;
+    height: 60px;
     margin-bottom: 20px;
 }
 
@@ -124,58 +137,78 @@ header, footer {
     height: 100%;
     position: absolute;
     top: 50%;
-    left: 50px;
+    left: 4vh;
 }
 
 /************ Home Page Styling **********/
 
 .index div section {
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-right: 25px;
+    margin-left: 25px;
+}
+
+/* h2 inside of index sections */
+.index h2 {
+    letter-spacing: 1vh;
+    margin-bottom: 5vh;
+    width: 50%;
+}
+
+/* Section descriptions */
+.index .section-description {
+    margin-bottom: 5vh;
+    width: 100%;
+    font-weight: lighter;
+}
+
+/* Form section */
+.upload-files {
+    flex-grow: 2;
+    width: 33%;
+}
+
+/* About section */
+.about {
+    flex-grow: 0.5;
+    width: 66%;
 }
 
 /************ Button Styling *************/
 
 /* Hide default buttons */
-.upload-files input {
+.upload-files input, #file-submit {
     display: none;
 }
 
-#file-submit, .custom-input {
-    text-align: center;
-    padding: 10px;
+/* Job description, submit button and custom-input shared properties */
+#job-description, .custom-input {
     border-radius: 10px;
     border-style: solid;
     border-width: 2px;
-    font-weight: 600;
     border-color: #212121;
-    background-color: #276a42;
+    width: 100%;
 }
 
-.custom-input:hover, #file-submit:hover {
-    background-color: #00b347;
+.custom-input {
+    text-align: center;
+    padding: 5px;
+    font-weight: 600;
+    background-color: #212121;
+}
+.custom-input:hover {
+    background-color: #ffffff;
+    color: black;
 }
 
 /********* File Uploads Styling **********/
 
-/* Form size */
-.upload-files {
-    width: 100%;
-}
-
-/* Input sections */
+/* Spacing between inputs */
 .upload-files form label {
-    margin-top: 25px;
-}
-
-.upload-files form textarea {
-    width: 30%;;
-    height: 200px;
     margin-bottom: 25px;
-    resize: none;
 }
 
-#file-submit{
-    height: 40px;
-    color: white;
+/* Text area size, bottom spacing, and resize property */
+#job-description {
+    height: 200px;
+    resize: none;
 }
