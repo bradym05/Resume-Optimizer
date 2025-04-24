@@ -1,3 +1,6 @@
+import { Message } from "./messages.js";
+
+// Constants
 const fileUploadURL = "https://server-resume-optimizer.onrender.com/uploadfile/"; // Request URL for my server
 const fileMIME = "application/vnd.openxmlformats-officedocument.wordprocessingml.document"; // MIME for docx files
 const maxFileSize = 2 * 10e5; // Maximum size (in bytes) for resume file
@@ -47,18 +50,19 @@ function validateFile() {
     if (file){
         // Check file size
         if (file.size > maxFileSize) {
-            alert("File cannot exceed maximum size of 2mb");
+            new Message("File cannot exceed maximum size of 2mb", true);
             return false;
         }
         // Check file type
         if (!file.type.match(fileMIME)) {
-            alert("File type must be .docx");
+            new Message("File type must be .docx", true);
             return false;
         }
         // Update upload hint
         fileHintElement.innerText = `${file.name}`;
         return true;
     }
+    new Message("No file uploaded", true);
     return false;
 }
 
@@ -112,7 +116,7 @@ function onSubmit() {
         // Validate job description exists
         let jobDescription = jobDescriptionElement.value;
         if (jobDescription.length < minJobDescriptionLength){
-            alert("Please paste at least 100 characters from the job posting you are applying to");
+            new Message("Paste at least 100 characters from the job posting", true);
             return;
         }
         processingRequest = true

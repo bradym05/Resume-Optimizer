@@ -35,7 +35,7 @@ footer, body, .upload-files form {
     flex-direction: column;
 }
 
-/* Use columns for body on small screens */
+/* Use columns for body div on small screens */
 @media only screen and (max-width: 600px) {
     body div {
         flex-direction: column;
@@ -176,7 +176,7 @@ header, footer {
 }
 
 /* Job description, submit button and custom-input shared properties */
-#job-description, .custom-input, #upload-animation {
+#job-description, .custom-input, #upload-animation, .message {
     border-radius: 10px;
     border-style: solid;
     border-width: 2px;
@@ -200,10 +200,11 @@ header, footer {
     text-align: center;
     font-weight: 600;
 }
-.white-hover:hover {
+.white-hover:hover, .message {
     background-color: #ffffff;
     color: black;
 }
+
 .disabled-input {
     background-color: #333333;
     border-color: #333333;
@@ -230,4 +231,32 @@ header, footer {
     height: 30px;
     margin-top: -32px;
     opacity: 0;
+}
+
+/******** Popup Message Styling **********/
+
+#message-container {
+    position: absolute;
+    left: 1%;
+    width: 20%;
+    text-align: center;
+    flex-direction: column-reverse;
+}
+
+.message {
+    padding: 3%;
+}
+
+.message .close {
+    float: inline-start;
+    font-weight: 600;
+}
+.message .close:hover {
+    color: #212121;
+}
+.message p {
+    font-weight: light;
+}
+.message .close, .message p {
+    color: #414141;
 }
