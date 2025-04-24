@@ -15,8 +15,6 @@ const altText = { // Class name to alt text
 var fileHintElement = document.getElementById("file-hint")
 var fileButtonElement = document.getElementById("resume-file");
 var submitButtonElement = document.getElementById("file-submit");
-var fakeSubmitButtonElement = document.getElementById("fake-submit");
-var fakeSubmitButtonHint = fakeSubmitButtonElement.getElementsByClassName("small-text")[0];
 var jobDescriptionElement = document.getElementById("job-description");
 var characterCountElement = document.getElementById("character-count");
 var uploadAnimationDivElement = document.getElementById("upload-animation");
@@ -77,6 +75,33 @@ function onUploadSuccess(data) {
 
 /*********** Upload Resume to Server **********/
 
+function playUploadAnimation(){
+    // Show upload animation object
+    uploadAnimationDivElement.style.opacity = "100";
+    uploadAnimationDivElement.style.display = "flex";
+    // Disable hover for form input buttons
+    let formInputButtons = submitButtonElement.parentElement.querySelectorAll(".white-hover");
+    Array.prototype.forEach.call(formInputButtons, function(buttonElement) {
+        // Check if this is for the submit button
+        if (buttonElement.htmlFor === "file-submit") {
+            // Update submit text
+            buttonElement.innerHTML = 'Processing <p class="small-text">Uploading your resume to the server</p>';
+        }
+        buttonElement.classList.remove("white-hover");
+        buttonElement.classList.add("disabled-input");
+    })
+    // Disable input buttons
+    fileButtonElement.disabled = true;
+    submitButtonElement.disabled = true;
+    jobDescriptionElement.disabled = true;
+    // Play animations
+    for (let animationElement of uploadAnimationElements) {
+        for (let animation of animationElement.getAnimations()) {
+            animation.play();
+        }
+    }
+}
+
 function onSubmit() {
     // Check if request is processing already
     if (!processingRequest){
@@ -92,9 +117,7 @@ function onSubmit() {
         }
         processingRequest = true
         // Play upload animation
-        uploadAnimationDivElement.style.display = "flex";
-        fakeSubmitButtonElement.style.color = "#ffffff00";
-        fakeSubmitButtonHint.style.color = "#ffffff00";
+        playUploadAnimation();
         // Create data
         let formData = new FormData();
         formData.append('file', fileButtonElement.files[0]);
@@ -110,8 +133,6 @@ function onSubmit() {
         }).catch(error => {
             console.log('Error:', error)
         });
-    } else {
-        alert("Already optimizing, please wait")
     }
 }
 

@@ -27,12 +27,26 @@ main {
     justify-content: space-evenly;
 }
 
-.flex, body {
+.flex, body, #upload-animation {
     display: flex;
 }
 
 footer, body, .upload-files form {
     flex-direction: column;
+}
+
+/* Use columns for body on small screens */
+@media only screen and (max-width: 600px) {
+    body div {
+        flex-direction: column;
+    }
+}
+
+/* Adjust width for large screens */
+@media only screen and (min-width: 600px) {
+    .upload-files {
+        width: 33%;
+    }
 }
 
 /********* Site-Wide Text Styling ********/
@@ -69,7 +83,7 @@ footer a, footer p, .small-text {
     color: #888888;
 }
 
-header, footer, .upload-files form {
+header, footer, .upload-files form, #upload-animation {
     align-items: center;
 }
 
@@ -146,7 +160,6 @@ header, footer {
 /* Form section */
 .upload-files {
     flex-grow: 2;
-    width: 33%;
 }
 
 /* About section */
@@ -163,23 +176,37 @@ header, footer {
 }
 
 /* Job description, submit button and custom-input shared properties */
-#job-description, .custom-input {
+#job-description, .custom-input, #upload-animation {
     border-radius: 10px;
     border-style: solid;
     border-width: 2px;
     border-color: #212121;
+    padding: 5px;
+}
+
+#job-description, .custom-input {
     width: 100%;
 }
 
+#upload-animation, .disabled-input {
+    background-color: #333333;
+    border-color: #333333;
+}
+
 .custom-input {
-    text-align: center;
-    padding: 5px;
-    font-weight: 600;
     background-color: #212121;
 }
-.custom-input:hover {
+.custom-input {
+    text-align: center;
+    font-weight: 600;
+}
+.white-hover:hover {
     background-color: #ffffff;
     color: black;
+}
+.disabled-input {
+    background-color: #333333;
+    border-color: #333333;
 }
 
 /********* File Uploads Styling **********/
@@ -193,4 +220,14 @@ header, footer {
 #job-description {
     height: 200px;
     resize: none;
+}
+
+/* File transfer animation */
+#upload-animation {
+    justify-content: right;
+    flex-direction: row;
+    width: 30%;
+    height: 30px;
+    margin-top: -32px;
+    opacity: 0;
 }

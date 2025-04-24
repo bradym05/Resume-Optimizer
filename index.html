@@ -47,25 +47,27 @@ Version:
                     <form class="flex">
                         <!-- Resume File Upload-->
                         <input type="file" id="resume-file">
-                        <label for="resume-file" class="custom-input">
+                        <label for="resume-file" class="custom-input white-hover">
                             Upload Resume (.docx, 2mb max)
                             <p class="small-text", id="file-hint">No file uploaded</p>
                         </label>
                         <!-- Job Description Text Input -->
                         <textarea id="job-description"></textarea>
                         <label for="job-description" id="character-count">0</label>
+
                         <!-- Submit Button -->
                         <button type="button" id="file-submit"></button>
-                        <label for="file-submit" class="custom-input" id="fake-submit">
-                            <div class="animation-div" id="upload-animation">
-                                <img class="resume-img animated" src="images/Resume.svg">
-                                <img class="server-img animated" src="images/Server.svg">
-                            </div>
+                        <label for="file-submit" class="custom-input white-hover">
                             Optimize Now
                             <p class="small-text">Your files will be uploaded for processing</p>
                         </label>
+                        <!-- Upload Animation -->
+                        <div class="animation-div" id="upload-animation">
+                            <img class="resume-img animated" src="images/Resume.svg">
+                            <img class="server-img animated" src="images/Server.svg">
+                        </div>
                     </form>
-
+                    <br>
                 </section>
                 
                 <!-- Description of the process -->
