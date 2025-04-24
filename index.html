@@ -17,6 +17,7 @@ Version:
         <!-- Style Sheets -->
         <link rel="stylesheet" href="styles/reset.css">
         <link rel="stylesheet" href="styles/styles.css">
+        <link rel="stylesheet" href="styles/animations.css">
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,14 +25,9 @@ Version:
     </head>
 
     <body>
-        <!-- Site header with icons and title -->
+        <!-- Site header with title -->
         <header class="flex">
             <a href="index.html" class="flex">
-                <!-- Resume and wand SVGs -->
-                <div id="header-icons">
-                    <img id="resume-icon" src="images/Resume.svg" alt="a simple resume with the outline of a portrait in the corner">
-                    <img id="wand-icon" src="images/Wand.svg" alt="a magic wand with sparkles at the tip">
-                </div>
                 <h1 class="large-text">Resume Optimizer</h1>
             </a>
         </header>
@@ -44,14 +40,8 @@ Version:
                     <h2>Resume Scanner</h1>
                     <!-- Description-->
                     <div class="section-description">
-                        <p>
-                            Optimize your resume to improve your ATS Score for free!
-                        </p>
-                        <br>
-                        <ol>
-                            <li>Resume and job description are uploaded to the server</li>
-                            <li>Machine Learning AI extracts and compares keywords</li>
-                        </ol>
+                        <p>Optimize your resume to improve your ATS Score for free!</p>
+                        <p>Your files are never kept after processing.</p>
                     </div>
                     <!-- Form for file inputs -->
                     <form class="flex">
@@ -66,16 +56,33 @@ Version:
                         <label for="job-description" id="character-count">0</label>
                         <!-- Submit Button -->
                         <button type="button" id="file-submit"></button>
-                        <label for="file-submit" class="custom-input">
+                        <label for="file-submit" class="custom-input" id="fake-submit">
+                            <div class="animation-div" id="upload-animation">
+                                <img class="resume-img animated" src="images/Resume.svg">
+                                <img class="server-img animated" src="images/Server.svg">
+                            </div>
                             Optimize Now
                             <p class="small-text">Your files will be uploaded for processing</p>
                         </label>
                     </form>
+
                 </section>
                 
-                <!-- Brief website description -->
+                <!-- Description of the process -->
                 <section class="about">
-                    <p>Upload your resume, and job posting to make adjustments that will boost your ATS score.</p>
+                    <h2>The Algorithm</h2>
+                    <!-- Description-->
+                    <div class="section-description">
+                        <ol>
+                            <li>Resume and job description are uploaded to the server</li>
+                            <li>Parsing splits the resume into sections</li>
+                            <li>Regular expressions identify contact info</li>
+                            <li>
+                                <a href="https://github.com/SkBlaz/rakun2">RaKUn2.0 </a>
+                                extracts keyphrases in the resume and job posting
+                            </li>
+                        </ol>
+                    </div>
                 </section>
             </div>
         </main>
@@ -84,10 +91,7 @@ Version:
         <footer class="flex">
             <p class="small-text">Created by <a href="https://www.linkedin.com/in/brady-maki/">Brady Maki</a></p>
             <p class="small-text"> 
-                <a href="https://www.reshot.com/free-svg-icons/item/magic-wand-4JZTFRKXUV/" title="wand icon">Wand Icon </a>
-                and 
-                <a href="https://www.reshot.com/free-svg-icons/item/profile-KZ62Q3P9FW/" title="resume icon">Resume Icon </a>
-                Created by
+                Icons created by
                 <a href="https://www.reshot.com/" title="reshot">Reshot </a>
             </p>
         </footer>

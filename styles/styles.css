@@ -60,7 +60,7 @@ a:hover {
 }
 
 /* White color */
-body, header a, a:hover, p {
+body, a, a:hover, p {
     color: #ffffff; 
 }
 
@@ -119,25 +119,7 @@ footer {
 
 /* Combined Styling (bg color) */
 header, footer {
-    background-color: #212121;    
-}
-
-/************* Icon Styling **************/
-
-#header-icons {
-    position: relative;
-}
-
-#resume-icon {
-    height: 100%;
-    position: relative;
-}
-
-#wand-icon {
-    height: 100%;
-    position: absolute;
-    top: 50%;
-    left: 4vh;
+    background-color: #212121;  
 }
 
 /************ Home Page Styling **********/

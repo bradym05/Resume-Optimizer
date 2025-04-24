@@ -4,12 +4,23 @@ const maxFileSize = 2 * 10e5; // Maximum size (in bytes) for resume file
 const minJobDescriptionLength = 100; // Minimum character count for job description input
 const maxJobDescriptionLength = 2000; // Maximum character count for job description input
 
+// Accessibility
+const altText = { // Class name to alt text
+    "resume-img": "a simple resume with the outline of a portrait in the corner",
+    "server-img": "a simple illustration of 4 servers stacked ontop of eachother",
+    "box-img": "an open cardboard box",
+}
+
 // Site elements
 var fileHintElement = document.getElementById("file-hint")
 var fileButtonElement = document.getElementById("resume-file");
 var submitButtonElement = document.getElementById("file-submit");
+var fakeSubmitButtonElement = document.getElementById("fake-submit");
+var fakeSubmitButtonHint = fakeSubmitButtonElement.getElementsByClassName("small-text")[0];
 var jobDescriptionElement = document.getElementById("job-description");
 var characterCountElement = document.getElementById("character-count");
+var uploadAnimationDivElement = document.getElementById("upload-animation");
+var uploadAnimationElements = uploadAnimationDivElement.getElementsByClassName("animated");
 
 // State
 var processingRequest = false;
@@ -80,6 +91,10 @@ function onSubmit() {
             return;
         }
         processingRequest = true
+        // Play upload animation
+        uploadAnimationDivElement.style.display = "flex";
+        fakeSubmitButtonElement.style.color = "#ffffff00";
+        fakeSubmitButtonHint.style.color = "#ffffff00";
         // Create data
         let formData = new FormData();
         formData.append('file', fileButtonElement.files[0]);
@@ -101,7 +116,16 @@ function onSubmit() {
 }
 
 // Set file filter for upload button
-fileButtonElement.setAttribute("accept", fileMIME)
+fileButtonElement.setAttribute("accept", fileMIME);
 
 // Listen for click
-submitButtonElement.addEventListener("click", onSubmit)
+submitButtonElement.addEventListener("click", onSubmit);
+
+/**************** Accessibility ***************/
+
+for (let [className, text] of Object.entries(altText)) {
+    let classElements = document.getElementsByClassName(className);
+    for (let element of classElements) {
+        element.setAttribute("alt", text)
+    }
+}
