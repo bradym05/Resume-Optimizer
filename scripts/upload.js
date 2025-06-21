@@ -1,8 +1,10 @@
 import { Message } from "./messages.js";
 
 // Constants
-const fileUploadURL = "https://server-resume-optimizer.onrender.com/uploadfile/"; // Request URL for my server
-const optimizeURL = "https://server-resume-optimizer.onrender.com/optimize/"; // Optimize URL for my server
+const requestURL = "https://server-resume-optimizer.onrender.com"
+//const requestURL = "http://127.0.0.1:8000" // local server for testing
+const fileUploadURL = `${requestURL}/uploadfile/`; // Request URL for my server
+const optimizeURL = `${requestURL}/optimize/`; // Optimize URL for my server
 const fileMIME = "application/vnd.openxmlformats-officedocument.wordprocessingml.document"; // MIME for docx files
 const maxFileSize = 2 * 10e5; // Maximum size (in bytes) for resume file
 const minJobDescriptionLength = 100; // Minimum character count for job description input
@@ -77,6 +79,7 @@ fileButtonElement.addEventListener("change", validateFile)
 function onOptimizeSucess(optimizeResponse) {
     // Convert response to json
     optimizeResponse.json().then(responseJson => {
+        // Log json data for debugging purposes
         console.log(responseJson);
     }).catch(error => {
         // Log errors
@@ -88,23 +91,23 @@ function onOptimizeSucess(optimizeResponse) {
 
 function onUploadSuccess(uploadResponse) {
     // Convert response to formData
-    uploadResponse.formData().then(responseFormData => {
+    uploadResponse.json().then(responseFormData => {
+            // Log json data for debugging purposes
+            console.log(responseFormData);
             // Get resume UUID
-            let resumeId = responseFormData.get("file_id");
+            let resumeId = responseFormData.file_id;
             // Update submit text
             fileSubmitTextElement.innerHTML = 'Optimizing <p class="small-text">Analyzing your resume</p>';
             // Get results
-            fetch(`${optimizeURL}/${resumeId}`, {
-                method: 'GET',
-                mode: 'cors',
-            }).then(optimizeResponse => {
-                // Log success, invoke optimize callback
-                console.log('Success:', optimizeResponse)
-                onOptimizeSucess(optimizeResponse)
-            }).catch(error => {
-                // Log errors
-                console.log('Error:', error)
-            });
+            fetch(`${optimizeURL}${resumeId}`)
+                .then(optimizeResponse => {
+                    // Log success, invoke optimize callback
+                    console.log('Success:', optimizeResponse)
+                    onOptimizeSucess(optimizeResponse)
+                }).catch(error => {
+                    // Log errors
+                    console.log('Error:', error)
+                });
         }
     ).catch(error => {
         // Log errors
