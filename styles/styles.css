@@ -162,10 +162,10 @@ header, footer {
     flex-grow: 2;
 }
 
-/* About section */
-.about {
+/* Feedback and About sections */
+.feedback, .about {
     flex-grow: 0.5;
-    width: 66%;
+    width: 33%;
 }
 
 /************ Button Styling *************/

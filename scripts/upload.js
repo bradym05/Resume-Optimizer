@@ -2,6 +2,7 @@ import { Message } from "./messages.js";
 
 // Constants
 const fileUploadURL = "https://server-resume-optimizer.onrender.com/uploadfile/"; // Request URL for my server
+const optimizeURL = "https://server-resume-optimizer.onrender.com/optimize/"; // Optimize URL for my server
 const fileMIME = "application/vnd.openxmlformats-officedocument.wordprocessingml.document"; // MIME for docx files
 const maxFileSize = 2 * 10e5; // Maximum size (in bytes) for resume file
 const minJobDescriptionLength = 100; // Minimum character count for job description input
@@ -74,7 +75,19 @@ function onUploadSuccess(data) {
     // Get resume UUID
     responseFormData = data.formData();
     resumeId = responseFormData.get("file_id");
-    // 
+    // Update submit text
+    buttonElement.innerHTML = 'Optimizing <p class="small-text">Analyzing your resume</p>';
+    // Get results
+    fetch(`${optimizeURL}/${resumeId}`, {
+        method: 'GET',
+        mode: 'cors',
+        body: formData
+    }).then(data => {
+        console.log('Success:', data)
+        console.log(data)
+    }).catch(error => {
+        console.log('Error:', error)
+    });
 }
 
 /*********** Upload Resume to Server **********/
