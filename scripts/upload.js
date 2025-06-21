@@ -27,6 +27,9 @@ var uploadAnimationElements = uploadAnimationDivElement.getElementsByClassName("
 // State
 var processingRequest = false;
 
+// Manipulated
+var fileSubmitTextElement;
+
 /*************** Job Description **************/
 
 function updateCharacterCount() {
@@ -69,30 +72,43 @@ function validateFile() {
 
 fileButtonElement.addEventListener("change", validateFile)
 
+/********** Process Optimized Resume **********/
+
+function onOptimizeSucess(optimizeResponse) {
+    // Convert response to json
+    optimizeResponse.json().then(responseJson => {
+        console.log(responseJson);
+    }).catch(error => {
+        // Log errors
+        console.log('Error:', error)
+    })
+}
+
 /************ Get Optimized Resume ************/
 
-function onUploadSuccess(data) {
-    // Get resume UUID
-    data.formData().then(
-        (responseFormData) => {
+function onUploadSuccess(uploadResponse) {
+    // Convert response to formData
+    uploadResponse.formData().then(responseFormData => {
+            // Get resume UUID
             let resumeId = responseFormData.get("file_id");
             // Update submit text
-            submitButtonElement.innerHTML = 'Optimizing <p class="small-text">Analyzing your resume</p>';
+            fileSubmitTextElement.innerHTML = 'Optimizing <p class="small-text">Analyzing your resume</p>';
             // Get results
             fetch(`${optimizeURL}/${resumeId}`, {
                 method: 'GET',
                 mode: 'cors',
-                body: formData
-            }).then(data => {
-                console.log('Success:', data)
-                console.log(data)
+            }).then(optimizeResponse => {
+                // Log success, invoke optimize callback
+                console.log('Success:', optimizeResponse)
+                onOptimizeSucess(optimizeResponse)
             }).catch(error => {
+                // Log errors
                 console.log('Error:', error)
             });
         }
-    ).catch((err) => {
+    ).catch(error => {
         // Log errors
-        console.log(err)
+        console.log('Error:', error)
     })
 }
 
@@ -109,6 +125,8 @@ function playUploadAnimation(){
         if (buttonElement.htmlFor === "file-submit") {
             // Update submit text
             buttonElement.innerHTML = 'Processing <p class="small-text">Uploading your resume to the server</p>';
+            // Update submit text variable
+            fileSubmitTextElement = buttonElement;
         }
         buttonElement.classList.remove("white-hover");
         buttonElement.classList.add("disabled-input");
@@ -150,10 +168,12 @@ function onSubmit() {
             method: 'POST',
             mode: 'cors',
             body: formData
-        }).then(data => {
-            console.log('Success:', data)
-            onUploadSuccess(data)
+        }).then(uploadResponse => {
+            // Log success, invoke upload callback
+            console.log('Success:', uploadResponse)
+            onUploadSuccess(uploadResponse)
         }).catch(error => {
+            // Log errors
             console.log('Error:', error)
         });
     }
