@@ -73,10 +73,10 @@ fileButtonElement.addEventListener("change", validateFile)
 
 function onUploadSuccess(data) {
     // Get resume UUID
-    responseFormData = data.formData();
-    resumeId = responseFormData.get("file_id");
+    let responseFormData = data.formData();
+    let resumeId = responseFormData.get("file_id");
     // Update submit text
-    buttonElement.innerHTML = 'Optimizing <p class="small-text">Analyzing your resume</p>';
+    submitButtonElement.innerHTML = 'Optimizing <p class="small-text">Analyzing your resume</p>';
     // Get results
     fetch(`${optimizeURL}/${resumeId}`, {
         method: 'GET',
