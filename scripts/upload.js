@@ -73,21 +73,27 @@ fileButtonElement.addEventListener("change", validateFile)
 
 function onUploadSuccess(data) {
     // Get resume UUID
-    let responseFormData = data.formData();
-    let resumeId = responseFormData.get("file_id");
-    // Update submit text
-    submitButtonElement.innerHTML = 'Optimizing <p class="small-text">Analyzing your resume</p>';
-    // Get results
-    fetch(`${optimizeURL}/${resumeId}`, {
-        method: 'GET',
-        mode: 'cors',
-        body: formData
-    }).then(data => {
-        console.log('Success:', data)
-        console.log(data)
-    }).catch(error => {
-        console.log('Error:', error)
-    });
+    data.formData().then(
+        (responseFormData) => {
+            let resumeId = responseFormData.get("file_id");
+            // Update submit text
+            submitButtonElement.innerHTML = 'Optimizing <p class="small-text">Analyzing your resume</p>';
+            // Get results
+            fetch(`${optimizeURL}/${resumeId}`, {
+                method: 'GET',
+                mode: 'cors',
+                body: formData
+            }).then(data => {
+                console.log('Success:', data)
+                console.log(data)
+            }).catch(error => {
+                console.log('Error:', error)
+            });
+        }
+    ).catch((err) => {
+        // Log errors
+        console.log(err)
+    })
 }
 
 /*********** Upload Resume to Server **********/
