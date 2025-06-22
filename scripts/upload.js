@@ -98,7 +98,7 @@ function delayInvoke(timeStarted, callback, ...args) {
     // Check if minimum delay has passed
     if (elapsed >= requestDelay) {
         // Invoke callback
-        callback(args)
+        callback(...args);
     } else {
         setTimeout(() => {callback(...args);}, requestDelay - elapsed);
     }
