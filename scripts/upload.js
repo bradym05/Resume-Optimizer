@@ -26,7 +26,7 @@ var jobDescriptionElement = document.getElementById("job-description");
 var characterCountElement = document.getElementById("character-count");
 var feedbackSectionElement = document.getElementById("feedback");
 var uploadAnimationDivElement = document.getElementById("upload-animation");
-var feedbackMatchPointsElement = document.getElementById("match-points");
+var feedbackMatchPercentageElement = document.getElementById("match-percentage");
 var analysisAnimationDivElement = document.getElementById("analysis-animation");
 var feedbackUnderusedTableElement = document.getElementById("underused-words");
 var feedbackUnderusedTableDivElement = document.getElementById("underused-div");
@@ -148,15 +148,15 @@ fileButtonElement.addEventListener("change", validateFile)
 
 /********** Process Optimized Resume **********/
 
-function displayResults(matchPoints, underused) {
-    // Initialize match points text
-    let matchPointsText = `Your resume is a ${Math.round(matchPoints * 10)}% match!`
+function displayResults(matchPercentage, underused) {
+    // Initialize match percentage text
+    let matchPercentageText = `Your resume is a ${Math.round(matchPercentage * 100)}% match!`
     // Check if resume is good
-    if (matchPoints >= 8) {
+    if (matchPercentage >= 0.8) {
         // Hide feedback table
         feedbackUnderusedTableDivElement.style.display = "none";
         // Indicate no feedback is needed
-        matchPointsText += `\nNo feedback needed`;
+        matchPercentageText += `\nNo feedback needed`;
     } else {
         // Initialize HTML for underused words table body
         let underusedWordsBody = "<tbody>\n";
@@ -165,8 +165,8 @@ function displayResults(matchPoints, underused) {
             // Create row
             underusedWordsBody += `
                 <tr>
-                    <th class="table-left">${word}</th>
-                    <th class="table-right">${underused[word]}</th>
+                    <td class="table-left">${word}</th>
+                    <td class="table-right">${underused[word]}</th>
                 </tr>\n`
         }
         // Close table body
@@ -174,8 +174,8 @@ function displayResults(matchPoints, underused) {
         // Update table HTML
         feedbackUnderusedTableElement.innerHTML += underusedWordsBody;
     }
-    // Set match points
-    feedbackMatchPointsElement.innerText = matchPointsText;
+    // Set match percentage
+    feedbackMatchPercentageElement.innerText = matchPercentageText;
     // Show feedback section
     feedbackSectionElement.style.visibility = "visible";
 }
@@ -190,10 +190,10 @@ function onOptimizeSucess(optimizeResponse) {
         // Stop analysis animation
         stopAnimation(analysisAnimationDivElement);
         // Get data from response
-        let matchPoints = responseJson.points;
+        let matchPercentage = responseJson.match_percentage;
         let underused = responseJson.underused;
         // Display results
-        displayResults(matchPoints, underused);
+        displayResults(matchPercentage, underused);
     }).catch(error => {
         // Log errors
         console.log('Error:', error);

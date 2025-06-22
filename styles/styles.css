@@ -187,7 +187,7 @@ header, footer {
     width: 100%;
 }
 
-#underused-words th {
+#underused-words th, #underused-words td {
     width: 50%;
 }
 
