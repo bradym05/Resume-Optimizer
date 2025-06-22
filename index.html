@@ -67,20 +67,43 @@ Version:
                             <p class="small-text">Your files will be uploaded for processing</p>
                         </label>
                         <!-- Upload Animation -->
-                        <div class="animation-div" id="upload-animation">
+                        <div class="animation-div process-animation" id="upload-animation">
                             <img class="resume-img animated" src="images/Resume.svg">
                             <img class="server-img animated" src="images/Server.svg">
+                        </div>
+                        <!-- Analysis Animation -->
+                        <div class="animation-div process-animation" id="analysis-animation">
+                            <img class="wand-img animated" src="images/Wand.svg">
                         </div>
                     </form>
                     <br>
                 </section>
 
                 <!-- Feedback from server -->
-                <section class="feedback">
+                <section id="feedback">
                     <h2>Resume Feedback</h2>
                     <!-- Description-->
                     <div class="section-description">
-                        <p>Upload your resume to get feedback</p>
+                        <p>Final results from your resume analysis</p>
+                        <br>
+                    </div>
+
+                    <!-- Match % -->
+                    <div class="feedback-header">
+                        <p id="match-points">Your</p>
+                    </div>
+
+                    <!-- Words table -->
+                    <div class="feedback-header" id="underused-div">
+                        <p>You should use these words more:</p>
+                        <table id="underused-words">
+                            <thead>
+                                <tr>
+                                    <th class="table-left">Word</th>
+                                    <th class="table-right">Count</th>
+                                </tr>
+                            </thead>
+                        </table>
                     </div>
                 </section>
                 

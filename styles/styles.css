@@ -27,7 +27,7 @@ main {
     justify-content: space-evenly;
 }
 
-.flex, body, #upload-animation {
+.flex, body {
     display: flex;
 }
 
@@ -83,7 +83,7 @@ footer a, footer p, .small-text {
     color: #888888;
 }
 
-header, footer, .upload-files form, #upload-animation {
+header, footer, .upload-files form, .process-animation {
     align-items: center;
 }
 
@@ -163,9 +163,44 @@ header, footer {
 }
 
 /* Feedback and About sections */
-.feedback, .about {
+#feedback, .about {
     flex-grow: 0.5;
     width: 33%;
+}
+
+/* Feedback section */
+#feedback {
+    visibility: hidden;
+}
+#underused-words {
+    width: 100%;
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+}
+
+#underused-words tr {
+    align-self: center;
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+#underused-words th {
+    width: 50%;
+}
+
+#underused-words .table-left {
+    justify-self: left;
+    text-align: left;
+}
+#underused-words .table-right {
+    justify-self: right;
+    text-align: right;
+}
+#underused-words tbody {
+    font-weight: 400;
 }
 
 /************ Button Styling *************/
@@ -176,7 +211,7 @@ header, footer {
 }
 
 /* Job description, submit button and custom-input shared properties */
-#job-description, .custom-input, #upload-animation, .message {
+#job-description, .custom-input, .process-animation, .message, .feedback-header {
     border-radius: 10px;
     border-style: solid;
     border-width: 2px;
@@ -184,11 +219,11 @@ header, footer {
     padding: 5px;
 }
 
-#job-description, .custom-input {
+#job-description, .custom-input, .feedback-header {
     width: 100%;
 }
 
-#upload-animation, .disabled-input {
+.process-animation, .disabled-input {
     background-color: #333333;
     border-color: #333333;
 }
@@ -196,7 +231,7 @@ header, footer {
 .custom-input {
     background-color: #212121;
 }
-.custom-input {
+.custom-input, .feedback-header {
     text-align: center;
     font-weight: 600;
 }
@@ -205,7 +240,7 @@ header, footer {
     color: black;
 }
 
-.disabled-input {
+.disabled-input, .feedback-header {
     background-color: #333333;
     border-color: #333333;
 }
@@ -213,7 +248,7 @@ header, footer {
 /********* File Uploads Styling **********/
 
 /* Spacing between inputs */
-.upload-files form label {
+.upload-files form label, .feedback-header {
     margin-bottom: 25px;
 }
 
@@ -223,14 +258,18 @@ header, footer {
     resize: none;
 }
 
-/* File transfer animation */
-#upload-animation {
-    justify-content: right;
+/* Process animations */
+.process-animation {
     flex-direction: row;
     width: 30%;
     height: 30px;
     margin-top: -32px;
-    opacity: 0;
+    display: none;
+}
+
+/* File upload animation */
+#upload-animation {
+    justify-content: right;
 }
 
 /******** Popup Message Styling **********/
