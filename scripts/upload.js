@@ -1,4 +1,5 @@
 import { Message } from "./messages.js";
+import { InterpolateColor } from "./interpolateColor.js";
 
 // Constants
 const requestURL = "https://server-resume-optimizer.onrender.com";
@@ -31,11 +32,11 @@ var analysisAnimationDivElement = document.getElementById("analysis-animation");
 var feedbackUnderusedTableElement = document.getElementById("underused-words");
 var feedbackUnderusedTableDivElement = document.getElementById("underused-div");
 
-
 // State
 var processingRequest = false;
 
 // Manipulated
+var matchColor = new InterpolateColor('rgb(255, 100, 100)', 'rgb(100, 255, 100)');
 var fileSubmitTextElement;
 
 /**************** Animations ***************/
@@ -151,6 +152,8 @@ fileButtonElement.addEventListener("change", validateFile)
 function displayResults(matchPercentage, underused) {
     // Initialize match percentage text
     let matchPercentageText = `Your resume is a ${Math.round(matchPercentage * 100)}% match!`
+    // Update match color
+    matchColor.update(Number(matchPercentage));
     // Check if resume is good
     if (matchPercentage >= 0.8) {
         // Hide feedback table
@@ -176,6 +179,7 @@ function displayResults(matchPercentage, underused) {
     }
     // Set match percentage
     feedbackMatchPercentageElement.innerText = matchPercentageText;
+    feedbackMatchPercentageElement.style.color = matchColor.currentColor;
     // Show feedback section
     feedbackSectionElement.style.visibility = "visible";
 }

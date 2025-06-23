@@ -18,11 +18,11 @@ export class Message {
         /* Set params */
         this.messageText = messageText;
         this.duration = duration;
-        this.autoDisplay = autoDisplay
+        this.autoDisplay = autoDisplay;
         /* Create message element */
         this.messageElement = document.createElement("div");
         this.messageElement.classList.add("message");
-        this.messageElement.style.marginTop = "1%"
+        this.messageElement.style.marginTop = "1%";
         /* Create close button */
         this.closeButton = document.createElement("div");
         this.closeButton.classList.add("close");
@@ -67,7 +67,7 @@ export class Message {
                 {
                     "duration": 100,
                     "easing": "ease-out"
-                })
+                });
             /* Destroy after set duration */
             this.#timeoutId = setTimeout(() => { this.#timeoutId = -1; this.#destroy(); }, this.duration * 1000);
         }

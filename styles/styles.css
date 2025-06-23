@@ -40,11 +40,12 @@ footer, body, .upload-files form {
     body div {
         flex-direction: column;
     }
+
 }
 
 /* Adjust width for large screens */
 @media only screen and (min-width: 600px) {
-    .upload-files {
+    .upload-files, #feedback {
         width: 33%;
     }
 }
@@ -165,7 +166,6 @@ header, footer {
 /* Feedback and About sections */
 #feedback, .about {
     flex-grow: 0.5;
-    width: 33%;
 }
 
 /* Feedback section */
