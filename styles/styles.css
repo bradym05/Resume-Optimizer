@@ -31,7 +31,7 @@ main {
     display: flex;
 }
 
-footer, body, .upload-files form {
+footer, body, #upload-files form {
     flex-direction: column;
 }
 
@@ -40,13 +40,25 @@ footer, body, .upload-files form {
     body div {
         flex-direction: column;
     }
-
+    #feedback, #about {
+        width: 95%;
+        align-self: center;
+    }
+    .feedback-header {
+        align-self: center;
+    }
+    #ats-percentage-header, #match-percentage-header {
+        justify-self: center;
+    }
 }
 
 /* Adjust width for large screens */
 @media only screen and (min-width: 600px) {
-    .upload-files, #feedback {
+    #about, #feedback {
         width: 33%;
+    }
+    #ats-percentage-header, #match-percentage-header {
+        justify-self: left;
     }
 }
 
@@ -84,7 +96,7 @@ footer a, footer p, .small-text {
     color: #888888;
 }
 
-header, footer, .upload-files form, .process-animation {
+header, footer, #upload-files form, .process-animation {
     align-items: center;
 }
 
@@ -159,54 +171,79 @@ header, footer {
 }
 
 /* Form section */
-.upload-files {
+#upload-files {
     flex-grow: 2;
 }
 
 /* Feedback and About sections */
-#feedback, .about {
+#feedback, #about {
     flex-grow: 0.5;
 }
 
-/* Feedback section */
+/************* Feedback Styling **********/
+
 #feedback {
     visibility: hidden;
 }
-#underused-words {
+
+.feedback-header {
+    width: 80%;
+    margin-right: 2%;
+}
+#match-percentage-header, #ats-percentage-header {
+    width: auto;
+}
+
+#match-percentage-header {
+    margin-bottom: 5px;
+}
+#ats-percentage-header {
+    margin-top: 0;
+}
+
+.feedback-table {
     width: 100%;
-    margin-top: 25px;
+    margin-top: 5%;
     display: flex;
     flex-direction: column;
     justify-content: right;
+    background-color: #212121;
 }
 
-#underused-words tr {
+.feedback-table tr {
     align-self: center;
     display: flex;
     justify-content: space-evenly;
     width: 100%;
 }
 
-#underused-words th, #underused-words td {
-    width: 50%;
+.feedback-table, .feedback-table th, .feedback-table td {
+    border-radius: 10px;
 }
 
-#underused-words .table-left {
+.feedback-table th, .feedback-table td {
+    width: 50%;
+    margin: 1%;
+    padding: 1%;
+    background-color:#333333;
+}
+
+.feedback-table .table-left {
     justify-self: left;
     text-align: left;
 }
-#underused-words .table-right {
+.feedback-table .table-right {
     justify-self: right;
     text-align: right;
 }
-#underused-words tbody {
+.feedback-table tbody {
     font-weight: 400;
 }
 
 /************ Button Styling *************/
 
 /* Hide default buttons */
-.upload-files input, #file-submit {
+#upload-files input, #file-submit {
     display: none;
 }
 
@@ -219,7 +256,7 @@ header, footer {
     padding: 5px;
 }
 
-#job-description, .custom-input, .feedback-header {
+#job-description, .custom-input {
     width: 100%;
 }
 
@@ -248,7 +285,7 @@ header, footer {
 /********* File Uploads Styling **********/
 
 /* Spacing between inputs */
-.upload-files form label, .feedback-header {
+#upload-files form label, .feedback-header {
     margin-bottom: 25px;
 }
 

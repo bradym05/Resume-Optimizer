@@ -41,7 +41,7 @@ Version:
             <!-- Main content: Upload, description -->
             <div class="flex">
                 <!-- Upload section to obtain necessary files -->
-                <section class="upload-files">
+                <section id="upload-files">
                     <h2>Resume Scanner</h1>
                     <!-- Description-->
                     <div class="section-description">
@@ -82,33 +82,61 @@ Version:
                 <!-- Feedback from server -->
                 <section id="feedback">
                     <h2>Resume Feedback</h2>
-                    <!-- Description-->
-                    <div class="section-description">
-                        <p>Final results from your resume analysis</p>
-                        <br>
+
+                    <!-- Feedback sections-->
+                    <div class="flex" id="feedback-sections">
+                        <!-- Words table -->
+                        <div class="feedback-header" id="underused-div">
+                            <p>Underused Words</p>
+                            <p class="small-text">Increase these words by the given count to improve your score</p>
+                            <table id="underused-words" class="feedback-table">
+                                <thead>
+                                    <tr>
+                                        <th class="table-left">Word</th>
+                                        <th class="table-right">Increase</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+
+                        <!-- Parsing results -->
+                        <div class="feedback-header" id="parsing-results">
+                            <p id="ats-readability">ATS Readability</p>
+                            <p class="small-text">See how many sections were readable, and the value of each section</p>
+
+                            <!-- Missed sections table -->
+                            <table id="missed-sections" class="feedback-table">
+                                <thead>
+                                    <tr>
+                                        <th class="table-left">Missed Section</th>
+                                        <th class="table-right">Points<p></p></th>
+                                    </tr>
+                                </thead>
+                            </table>
+                            <!-- Found sections table -->
+                            <table id="found-sections" class="feedback-table">
+                                <thead>
+                                    <tr>
+                                        <th class="table-left">Found Section</th>
+                                        <th class="table-right">Points<p></p></th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
                     </div>
 
                     <!-- Match % -->
-                    <div class="feedback-header">
+                    <div id="match-percentage-header" class="feedback-header">
                         <p id="match-percentage">N/A</p>
                     </div>
-
-                    <!-- Words table -->
-                    <div class="feedback-header" id="underused-div">
-                        <p>You should use these words more:</p>
-                        <table id="underused-words">
-                            <thead>
-                                <tr>
-                                    <th class="table-left">Word</th>
-                                    <th class="table-right">Count</th>
-                                </tr>
-                            </thead>
-                        </table>
+                    <!-- ATS % -->
+                    <div id="ats-percentage-header" class="feedback-header">
+                        <p id="ats-percentage">N/A</p>
                     </div>
                 </section>
                 
                 <!-- Description of the process -->
-                <section class="about">
+                <section id="about">
                     <h2>The Algorithm</h2>
                     <!-- Description-->
                     <div class="section-description">

@@ -25,18 +25,24 @@ var fileButtonElement = document.getElementById("resume-file");
 var submitButtonElement = document.getElementById("file-submit");
 var jobDescriptionElement = document.getElementById("job-description");
 var characterCountElement = document.getElementById("character-count");
-var feedbackSectionElement = document.getElementById("feedback");
 var uploadAnimationDivElement = document.getElementById("upload-animation");
-var feedbackMatchPercentageElement = document.getElementById("match-percentage");
 var analysisAnimationDivElement = document.getElementById("analysis-animation");
+
+var feedbackSectionElement = document.getElementById("feedback");
+var uploadFilesSectionElement = document.getElementById("upload-files");
+
+var feedbackAtsPercentageElement = document.getElementById("ats-percentage");
 var feedbackUnderusedTableElement = document.getElementById("underused-words");
-var feedbackUnderusedTableDivElement = document.getElementById("underused-div");
+var feedbackMatchPercentageElement = document.getElementById("match-percentage");
+var feedbackFoundSectionTableElement = document.getElementById("found-sections");
+var feedbackMissedSectionTableElement = document.getElementById("missed-sections");
 
 // State
 var processingRequest = false;
 
 // Manipulated
 var matchColor = new InterpolateColor('rgb(255, 100, 100)', 'rgb(100, 255, 100)');
+var atsColor = new InterpolateColor('rgb(255, 100, 100)', 'rgb(100, 255, 100)');
 var fileSubmitTextElement;
 
 /**************** Animations ***************/
@@ -68,6 +74,24 @@ function stopAnimation(divElement) {
 }
 
 /******************* Utility ******************/
+
+function createTableHTML(dict, valueSymbol) {
+    // Initialize HTML for table body
+    let tableHTML = "<tbody>\n";
+    // Iterate over underused words
+    for (let key in dict) {
+        // Create row
+        tableHTML += `
+            <tr>
+                <td class="table-left">${key}</td>
+                <td class="table-right">${valueSymbol}${dict[key]}</td>
+            </tr>\n`
+    }
+    // Close table body
+    tableHTML += "\n</tbody>";
+    // Return final table
+    return tableHTML;
+}
 
 function toggleSubmit(enabled) {
     // Toggle hover for form input buttons
@@ -149,39 +173,62 @@ fileButtonElement.addEventListener("change", validateFile)
 
 /********** Process Optimized Resume **********/
 
-function displayResults(matchPercentage, underused) {
+function displayResults(matchPercentage, underused, parsingResults) {
+    // Calculate ATS percentage
+    let atsPercentage = parsingResults.parsing_score/parsingResults.max_score;
+
     // Initialize match percentage text
-    let matchPercentageText = `Your resume is a ${Math.round(matchPercentage * 100)}% match!`
+    let matchPercentageText = `Description Match: ${Math.round(matchPercentage * 100)}%`;
+    let atsPercentageText = `ATS Readability: ${Math.round(atsPercentage * 100)}%`;
     // Update match color
-    matchColor.update(Number(matchPercentage));
-    // Check if resume is good
-    if (matchPercentage >= 0.8) {
-        // Hide feedback table
-        feedbackUnderusedTableDivElement.style.display = "none";
-        // Indicate no feedback is needed
-        matchPercentageText += `\nNo feedback needed`;
-    } else {
-        // Initialize HTML for underused words table body
-        let underusedWordsBody = "<tbody>\n";
-        // Iterate over underused words
-        for (let word in underused) {
-            // Create row
-            underusedWordsBody += `
-                <tr>
-                    <td class="table-left">${word}</th>
-                    <td class="table-right">${underused[word]}</th>
-                </tr>\n`
+    matchColor.update(matchPercentage);
+    atsColor.update(atsPercentage)
+
+    // Create underused words table HTML
+    feedbackUnderusedTableElement.innerHTML += createTableHTML(underused, "+");
+    feedbackUnderusedTableElement.innerHTML += `<p class="small-text">Increase means how many MORE times you should add the word</p>`;
+
+    // Mapping function to create table from section
+    let convertToSectionsTable = (element, valueSymbol, sectionsJSON) => {
+        let sectionDict = {};
+        let total = 0;
+        for (let sectionName in sectionsJSON) {
+            // Get nested dict
+            let nestedDict = sectionsJSON[sectionName];
+            // Initialize identifiers
+            let identifiers = ""
+            for (let id of nestedDict.identifiers) {
+                // Capitalize, add comma
+                identifiers += id.charAt(0).toUpperCase() + id.slice(1) + " / ";
+            }
+            total += nestedDict.value;
+            sectionDict[identifiers] = nestedDict.value;
         }
-        // Close table body
-        underusedWordsBody += "\n</tbody>";
-        // Update table HTML
-        feedbackUnderusedTableElement.innerHTML += underusedWordsBody;
-    }
+        // Check if total is > 0 
+        if (total > 0) {
+            // Set inner HTML
+            element.innerHTML += createTableHTML(sectionDict, valueSymbol);
+            element.innerHTML += `\n<p class="small-text">Total: ${valueSymbol}${total}</p>`
+        } else {
+            // Hide table
+            element.style.display = "none";
+        }
+    };
+    // Update HTML of section tables
+    convertToSectionsTable(feedbackMissedSectionTableElement, "-", parsingResults.missed_sections);
+    convertToSectionsTable(feedbackFoundSectionTableElement, "+", parsingResults.found_sections);
+
     // Set match percentage
     feedbackMatchPercentageElement.innerText = matchPercentageText;
     feedbackMatchPercentageElement.style.color = matchColor.currentColor;
+    // Set ATS percentage
+    feedbackAtsPercentageElement.innerText = atsPercentageText;
+    feedbackAtsPercentageElement.style.color = atsColor.currentColor;
     // Show feedback section
+    feedbackSectionElement.style.width = "75%";
     feedbackSectionElement.style.visibility = "visible";
+    // Hide upload section
+    uploadFilesSectionElement.style.display = "none";
 }
 
 function onOptimizeSucess(optimizeResponse) {    
@@ -193,16 +240,19 @@ function onOptimizeSucess(optimizeResponse) {
         fileSubmitTextElement.innerHTML = 'Finished <p class="small-text">Your resume is ready</p>';
         // Stop analysis animation
         stopAnimation(analysisAnimationDivElement);
-        // Get data from response
+        // Get raw data from response
         let matchPercentage = responseJson.match_percentage;
         let underused = responseJson.underused;
+        let parsingResults = responseJson.parsing_results;
         // Display results
-        displayResults(matchPercentage, underused);
+        displayResults(matchPercentage, underused, parsingResults);
     }).catch(error => {
         // Log errors
         console.log('Error:', error);
     })
 }
+
+
 
 /************ Get Optimized Resume ************/
 
