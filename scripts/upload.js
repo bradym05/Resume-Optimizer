@@ -2,7 +2,7 @@ import { Message } from "./messages.js";
 import { InterpolateColor } from "./interpolateColor.js";
 
 // Constants
-const requestURL = "https://server-resume-optimizer.onrender.com";
+const requestURL = "https://server-resume-optimizer.vercel.app";
 //const requestURL = "http://127.0.0.1:8000"; // local server for testing
 const fileUploadURL = `${requestURL}/uploadfile/`; // Request URL for my server
 const optimizeURL = `${requestURL}/optimize/`; // Optimize URL for my server
